@@ -32,13 +32,16 @@ class Transaction extends HiveObject {
       required double amount,
       required DateTime createdAt,
       required TransactionType type}) 
-    => Transaction(
+    {
+      var transaction = Transaction(
         id: Uuid().v1(),
         name: name,
         categories: HiveList(Hive.box(AppHiveBoxes.categoriesBoxName))..add(category),
         type: type,
         amount: amount,
         createdAt: createdAt);
+      return transaction;
+    }
   
   @HiveField(0)
   final String id;

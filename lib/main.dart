@@ -14,7 +14,7 @@ void main() async {
     Hive.registerAdapter<TransactionCategory>(TransactionCategoryAdapter());
     Hive.registerAdapter<Transaction>(TransactionAdapter());
     // open boxes
-   await Hive.openBox(AppHiveBoxes.settingsBoxName);
+   await Hive.openBox<dynamic>(AppHiveBoxes.settingsBoxName);
    await Hive.openBox<TransactionCategory>(AppHiveBoxes.categoriesBoxName);
    await Hive.openBox<Transaction>(AppHiveBoxes.transactionsBoxName);
   AppBindings.initServices();
