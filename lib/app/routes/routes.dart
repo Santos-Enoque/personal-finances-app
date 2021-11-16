@@ -1,4 +1,5 @@
 import 'package:get/route_manager.dart';
+import 'package:moneyro/app/modules/home/bindings/home_binding.dart';
 import 'package:moneyro/app/modules/home/views/home_view.dart';
 import 'package:moneyro/app/modules/splash/bindings/splash_bindings.dart';
 import 'package:moneyro/app/modules/splash/views/splash_view.dart';
@@ -13,6 +14,9 @@ class Routes {
        binding: SplashBindings()),
 
       GetPage(name: home, 
-      page: ()=> HomeView()),
+      page: ()=> HomeView(),
+      bindings: [
+        HomeBinding(),
+      ]),
   ];
 }

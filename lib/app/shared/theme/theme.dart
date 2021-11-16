@@ -35,6 +35,7 @@ class AppTheme {
           color: Colors.black,
         ),
       ),
+      iconTheme: IconThemeData(color: AppColors.darkGrey)
     );
   }
 
@@ -70,6 +71,7 @@ class AppTheme {
           color: Colors.white,
         ),
       ),
+      iconTheme: IconThemeData(color: AppColors.lightGrey)
     );
   }
 }

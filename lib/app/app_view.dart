@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
       darkTheme: AppTheme.dark(),
       initialRoute: Routes.splashScreen,
       getPages: Routes.pages,
+      defaultTransition: Transition.cupertino
     );
     });
   }
