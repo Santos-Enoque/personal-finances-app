@@ -10,32 +10,34 @@ class TransactionCategory extends HiveObject {
       required this.name,
       required this.icon,
       required this.isGroup,
-      this.categoryGroup});
+      required this.categoryGroup});
 
   factory TransactionCategory.create(
       {required String name,
       required String icon,
-      TransactionCategory? categoryGroup, 
+      TransactionCategory? categoryGroup,
       bool isGroup = false}) {
     final id = Uuid().v1();
     final repository = CategoriesRepository();
-    if (categoryGroup != null) {
-      var _groupInBox = categoryGroup;
-
-    if(!repository.box.values.contains(categoryGroup)){
-        _groupInBox  = repository.box.values
-          .firstWhere((element) => element.name == categoryGroup.name);
-    }
-
-      return TransactionCategory(
+    if (!isGroup) {
+      var childCategory = TransactionCategory(
         id: id,
         name: name,
         icon: icon,
         isGroup: isGroup,
-        categoryGroup: HiveList(repository.box)..addAll([_groupInBox]),
+        categoryGroup: HiveList(repository.box),
       );
+
+      childCategory.categoryGroup!.add(categoryGroup!);
+
+      return childCategory;
     }
-    return TransactionCategory(id: id, name: name, icon: icon, isGroup: isGroup);
+    return TransactionCategory(
+        id: id,
+        name: name,
+        icon: icon,
+        isGroup: isGroup,
+        categoryGroup: HiveList(repository.box));
   }
 
   @HiveField(0)
@@ -45,12 +47,14 @@ class TransactionCategory extends HiveObject {
   @HiveField(2)
   final String icon;
   @HiveField(3)
-  HiveList? categoryGroup;
+  HiveList<TransactionCategory>? categoryGroup;
   @HiveField(4)
   final bool isGroup;
 
   @override
   String toString() {
-    return 'id:$id, name:$name, isGroup:$isGroup, icon:$icon category:${categoryGroup?.first}';
+    return isGroup
+        ? 'id:$id, name:$name, isGroup:$isGroup, icon:$icon'
+        : 'id:$id, name:$name, isGroup:$isGroup, icon:$icon category: $categoryGroup';
   }
 }

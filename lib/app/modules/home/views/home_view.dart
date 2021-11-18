@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:moneyro/app/modules/home/controllers/home_controller.dart';
+import 'package:moneyro/app/routes/routes.dart';
 import 'package:moneyro/app/shared/theme/colors.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -54,7 +55,9 @@ class HomeView extends GetView<HomeController> {
                               blurRadius: 20)
                         ]),
                     child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.toNamed(Routes.selectCategoryView);
+                        },
                         icon: Icon(
                           Icons.add,
                           size: 34,

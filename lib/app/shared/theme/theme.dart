@@ -24,10 +24,12 @@ class AppTheme {
       textTheme: TextTheme(
         headline5: TextStyle(color: AppColors.primaryTwo),
         headline6: TextStyle(color: AppColors.primaryTwo),
+        headline4: TextStyle(fontSize: 24),
         bodyText1: TextStyle(color: AppColors.black), 
         caption: TextStyle(color: AppColors.black), 
       ),
        appBarTheme: AppBarTheme(
+         centerTitle: true,
         brightness: Brightness.light,
         elevation: 0,
         color: Colors.white,
@@ -64,6 +66,7 @@ class AppTheme {
         caption: TextStyle(color: AppColors.white), 
       ),
        appBarTheme: AppBarTheme(
+         centerTitle: true,
         brightness: Brightness.dark,
         elevation: 0,
         color: Colors.black,

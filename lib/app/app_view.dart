@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       themeMode: controller.themeMode,
       theme: AppTheme.light(),
       darkTheme: AppTheme.dark(),
-      initialRoute: Routes.splashScreen,
+      initialRoute: Routes.splashView,
       getPages: Routes.pages,
       defaultTransition: Transition.cupertino
     );

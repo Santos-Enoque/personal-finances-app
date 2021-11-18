@@ -10,7 +10,7 @@ class SplashController extends GetxController{
 
   _changeView(){
     Future.delayed(Duration(seconds: 1), (){
-      Get.toNamed(Routes.home);
+      Get.toNamed(Routes.homeView);
     });
   }
 }

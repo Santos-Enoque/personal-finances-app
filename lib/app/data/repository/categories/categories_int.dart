@@ -2,15 +2,14 @@ import 'package:hive/hive.dart';
 import 'package:moneyro/app/shared/models/category/category.dart';
 
 abstract class ICategoriesRepository {
+  void resetBox();
   Box<TransactionCategory> getBox();
   
   void createInitialCategoriesGroups(
-      {required List<TransactionCategory> categories,
-       bool force = false}) {}
+      {required List<TransactionCategory> categories});
 
-    void createInitialCategories(
-      {required List<TransactionCategory> categories,
-       bool force = false}) {}
+    void createInitialChildCategories(
+      {required List<TransactionCategory> categories});
 
   void createCategory(TransactionCategory category){}
 
@@ -18,8 +17,6 @@ abstract class ICategoriesRepository {
 
   void deleteCategory(TransactionCategory category){}
 
-  List<TransactionCategory> getCategoriesGroup(TransactionCategory category);
-
-  List<TransactionCategory> getCategories(TransactionCategory category);
+  Future<List<TransactionCategory>> getCategories({bool getGroups});
 
 }

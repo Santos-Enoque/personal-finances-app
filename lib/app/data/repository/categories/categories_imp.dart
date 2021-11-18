@@ -10,25 +10,21 @@ class CategoriesRepository implements ICategoriesRepository {
 
   @override
   void createInitialCategoriesGroups(
-      {required List<TransactionCategory> categories, bool force = false}) {
-    if (box.isEmpty || force) {
-      box.clear();
+      {required List<TransactionCategory> categories}) {
+    if (box.isEmpty) {
       box.addAll(categories);
-      print('added ${box.values.length} category groups');
+      print('added ${box.values.length} groups');
     }
   }
 
   @override
-  void createInitialCategories(
-      {required List<TransactionCategory> categories, bool force = false}) {
+  void createInitialChildCategories(
+      {required List<TransactionCategory> categories}) {
     var containsCategories = box.values.where((category) => category.isGroup == false).toList();
-    print(containsCategories.length);
-    print(DefaultCategoriesData.categories.length);
-
+    print('child categories: ' + containsCategories.length.toString());
 
     if (containsCategories.isEmpty) {
       box.addAll(categories);
-      print('added ${box.values.length} categories');
     }
   }
 
@@ -43,16 +39,8 @@ class CategoriesRepository implements ICategoriesRepository {
   }
 
   @override
-  List<TransactionCategory> getCategories(TransactionCategory category) {
-    // TODO: implement getCategories
-    throw UnimplementedError();
-  }
-
-  @override
-  List<TransactionCategory> getCategoriesGroup(TransactionCategory category) {
-    // TODO: implement getCategoriesGroup
-    throw UnimplementedError();
-  }
+  Future<List<TransactionCategory>> getCategories({bool getGroups = false}) async => box.values.where((element) => element.isGroup == getGroups).toList();
+ 
 
   @override
   void updateCategory(TransactionCategory category) {
@@ -61,4 +49,10 @@ class CategoriesRepository implements ICategoriesRepository {
 
   @override
   Box<TransactionCategory> getBox() => box;
+
+  @override
+  void resetBox() {
+    box.clear();
+    print('cleared Categories Box');
+  }
 }
